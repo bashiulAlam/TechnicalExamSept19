@@ -30,7 +30,7 @@
 
 **Execution from IDE**
 
-1. Run the class FacebookLoginTestCase
+1. Run the class SignUpTestCase
 
 ## Log and Result Observation:
 

@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 public class SignUpTestCase extends TestBase {
     @Test
-    public void login() {
+    public void signUp() {
         SignUpPage signUpPage = PageFactory.initElements(driver, SignUpPage.class);
 
         //Step 1: Tell us about yourself
