@@ -7,8 +7,9 @@
 
 ## Required Environment:
 
-*Java 1.8*
-*Gecko Driver*
+- *Java 1.8*
+- *Gecko Driver*
+- *Mozilla FireFox*
 
 ## Installation
 
@@ -29,7 +30,7 @@
 
 **Execution from IDE**
 
-1. 
+1. Run the class FacebookLoginTestCase
 
 ## Log and Result Observation:
 

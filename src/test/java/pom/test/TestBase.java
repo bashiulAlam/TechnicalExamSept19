@@ -12,7 +12,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  * Created by Sabab on 9/16/2020.
  */
 public class TestBase {
-    public static String baseUrl = "https://www.facebook.com/";
+    public static String baseUrl = "https://www.utest.com/signup/personal";
     public static WebDriver driver = null;
 
     public static ExtentTest test;
@@ -28,7 +28,7 @@ public class TestBase {
         driver.get(baseUrl);
 
         if (driver.getTitle().contains("Facebook"))
-            test.log(LogStatus.PASS, "Navigated to facebook.com");
+            test.log(LogStatus.PASS, "Navigated to signup page");
         else
             test.log(LogStatus.FAIL, "Could not load URL");
         //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
