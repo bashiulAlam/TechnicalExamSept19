@@ -1,11 +1,15 @@
 package pom.pages;
 
 import com.sun.org.apache.xalan.internal.xsltc.dom.SimpleResultTreeImpl;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.Select;
+
+import java.awt.*;
 
 public class SignUpPage {
     WebDriver driver;
@@ -14,7 +18,7 @@ public class SignUpPage {
         this.driver = driver;
     }
 
-    @FindBy(how = How.ID, using = "firstName")
+    @FindBy(how = How.XPATH, using = "//input[@name='firstName']")
     WebElement firstNameElem;
 
     @FindBy(how = How.ID, using = "lastName")
@@ -24,13 +28,13 @@ public class SignUpPage {
     WebElement emailElem;
 
     @FindBy(how = How.ID, using = "birthDay")
-    Select birthDayElem;
+    WebElement birthDayElem;
 
     @FindBy(how = How.ID, using = "birthMonth")
-    Select birthMonthElem;
+    WebElement birthMonthElem;
 
     @FindBy(how = How.ID, using = "birthYear")
-    Select birthYearElem;
+    WebElement birthYearElem;
 
     @FindBy(how = How.ID, using = "city")
     WebElement cityElem;
@@ -53,7 +57,7 @@ public class SignUpPage {
     @FindBy(how = How.ID, using = "privacySetting")
     WebElement privacySetting;
 
-    @FindBy(how = How.CLASS_NAME, using = "btn btn-blue")
+    @FindBy(how = How.CLASS_NAME, using = "btn-blue")
     WebElement blueButton;
 
     @FindBy(how = How.CLASS_NAME, using = "btn btn-blue pull-right")
@@ -101,19 +105,25 @@ public class SignUpPage {
         lastNameElem.sendKeys(lastName);
     }
 
-    public void setBirthDay(String birthDay) {
-        birthDayElem.selectByVisibleText(birthDay);
-        birthDayElem.selectByIndex(1);
+    public void setBirthDay(int birthDayIndex) {
+        //birthDayElem.selectByVisibleText(birthDay);
+        Select drop = new Select(birthDayElem);
+        drop.selectByIndex(birthDayIndex);
     }
 
-    public void setBirthMonth(String birthMonth) {
-        birthMonthElem.selectByVisibleText(birthMonth);
-        birthMonthElem.selectByIndex(1);
+    public void setBirthMonth(int birthMonthIndex) {
+        //birthMonthElem.selectByVisibleText(birthMonth);
+        //birthMonthElem.selectByIndex(1);
+        Select drop = new Select(birthMonthElem);
+        drop.selectByIndex(birthMonthIndex);
     }
 
-    public void setBirthYear(String birthYear) {
-        birthYearElem.selectByVisibleText(birthYear);;
-        birthYearElem.selectByIndex(1);
+    public void setBirthYear(int birthYearIndex) {
+        //birthYearElem.selectByVisibleText(birthYear);;
+        //birthYearElem.selectByIndex(1);
+
+        Select drop = new Select(birthYearElem);
+        drop.selectByIndex(birthYearIndex);
     }
 
     public void setCity(String city) {
@@ -134,5 +144,23 @@ public class SignUpPage {
 
     public void clickPrivacySetting() {
         privacySetting.click();
+    }
+
+    public void clickAnywhere(int x, int y) throws AWTException {
+        Actions actions = new Actions(driver);
+
+        Robot robot = new Robot();
+
+        robot.mouseMove(x,y);
+
+        actions.click().build().perform();
+    }
+
+    public void clearField(WebElement element) {
+        element.clear();
+    }
+
+    public WebElement getEmailElem() {
+        return this.emailElem;
     }
 }

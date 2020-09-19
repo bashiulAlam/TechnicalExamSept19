@@ -8,6 +8,8 @@ import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by Sabab on 9/16/2020.
  */
@@ -27,7 +29,7 @@ public class TestBase {
         driver = new FirefoxDriver();
         driver.get(baseUrl);
 
-        if (driver.getTitle().contains("Facebook"))
+        if (driver.getTitle().contains("uTest"))
             test.log(LogStatus.PASS, "Navigated to signup page");
         else
             test.log(LogStatus.FAIL, "Could not load URL");

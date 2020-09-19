@@ -7,11 +7,12 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import pom.pages.SignUpPage;
 
+import java.awt.*;
 import java.util.concurrent.TimeUnit;
 
 public class SignUpTestCase extends TestBase {
     @Test
-    public void signUp() {
+    public void signUp() throws AWTException {
         SignUpPage signUpPage = PageFactory.initElements(driver, SignUpPage.class);
 
         //Step 1: Tell us about yourself
@@ -20,17 +21,27 @@ public class SignUpTestCase extends TestBase {
 
         //set Invalid email
         signUpPage.setEmail("wrongEmail");
+        //signUpPage.clickAnywhere(50, 50);
+
+        signUpPage.setBirthDay(1);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         String errorMsg = signUpPage.getEmailValidationError();
-        if (errorMsg.equals("Enter valid email")) {
+
+        if (errorMsg.contains("Enter valid email")) {
             test.log(LogStatus.PASS, "Wrong email validation passed");
+        } else {
+            test.log(LogStatus.FAIL, "Email validation failed");
         }
+
+        //set valid email
+        signUpPage.clearField(signUpPage.getEmailElem());
         signUpPage.setEmail("sabab.ndc@gmail.com");
-        signUpPage.setBirthDay("1");
-        signUpPage.setBirthMonth("January");
-        signUpPage.setBirthYear("1991");
+
+        //signUpPage.setBirthDay(1);
+        signUpPage.setBirthMonth(1);
+        signUpPage.setBirthYear(3);
 
         signUpPage.clickBlueButton();
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
         /*//Step 2: Add your address
         signUpPage.setCity("Dhaka");
@@ -52,6 +63,6 @@ public class SignUpTestCase extends TestBase {
         signUpPage.clickTermsOfUse();
         signUpPage.clickCompleteButton();*/
 
-        //driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 }
