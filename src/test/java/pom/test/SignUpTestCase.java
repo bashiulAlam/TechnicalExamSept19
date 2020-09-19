@@ -52,6 +52,6 @@ public class SignUpTestCase extends TestBase {
         signUpPage.clickTermsOfUse();
         signUpPage.clickCompleteButton();*/
 
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        //driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
 }
