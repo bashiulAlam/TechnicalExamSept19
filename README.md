@@ -8,11 +8,13 @@
 ## Required Environment:
 
 *Java 1.8*
+*Gecko Driver*
 
 ## Installation
 
 - Open the project and resolve all the dependencies from pom.xml
 - Need to resolve dependency of jUnit, Selenium and Extent Report
+- Download gecko driver from https://github.com/mozilla/geckodriver/releases/tag/v0.27.0 and copy the directory in TestBase class
 
 ## Structure
 
